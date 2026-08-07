@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trail Log — College IV Karnataka Tour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky-1:#E7F6FF;
+    --sky-2:#C7ECFC;
+    --sky-deep:#8FD4F3;
+    --mint-1:#EAFBF2;
+    --mint-2:#C9F1DB;
+    --mint-deep:#8FE0B9;
+    --white:#FFFFFF;
+    --ink:#122A33;
+    --ink-soft:rgba(18,42,51,0.62);
+    --ink-faint:rgba(18,42,51,0.42);
+    --blue:#2E9BE6;
+    --green:#22B57C;
+    --amber:#F2994A;
+    --glass-bg:rgba(255,255,255,0.5);
+    --glass-bg-strong:rgba(255,255,255,0.72);
+    --glass-border:rgba(255,255,255,0.85);
+    --glass-shadow:0 10px 34px rgba(30,80,100,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    background:linear-gradient(180deg,
+      var(--sky-1) 0%, var(--sky-2) 16%, #EFF9FE 32%,
+      #FFFFFF 46%, #FFFFFF 54%,
+      var(--mint-1) 68%, var(--mint-2) 86%, var(--mint-2) 100%);
+    position:relative;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+    color:var(--ink);
+  }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  a{color:inherit;}
+  img{display:block; max-width:100%;}
+  ::selection{ background:var(--sky-deep); color:var(--ink); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- soft color blobs, scroll with page, colour shifts blue -> green ---------- */
+  .blob{
+    position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:0;
+    will-change:transform;
+  }
+  .blob.blue1{ width:46vw; height:46vw; background:var(--sky-deep); opacity:0.55; top:-10vw; left:-12vw; animation:drift1 26s ease-in-out infinite; }
+  .blob.blue2{ width:34vw; height:34vw; background:#AEE6FA; opacity:0.5; top:10vw; right:-8vw; animation:drift2 30s ease-in-out infinite; }
+  .blob.mint1{ width:44vw; height:44vw; background:var(--mint-deep); opacity:0.5; bottom:-6vw; left:-10vw; animation:drift2 32s ease-in-out infinite; }
+  .blob.mint2{ width:34vw; height:34vw; background:#BDEFD3; opacity:0.55; bottom:6vw; right:-6vw; animation:drift1 28s ease-in-out infinite; }
+  @keyframes drift1{ 0%,100%{ transform:translate(0,0) scale(1);} 50%{ transform:translate(5vw,6vw) scale(1.1);} }
+  @keyframes drift2{ 0%,100%{ transform:translate(0,0) scale(1);} 50%{ transform:translate(-5vw,-4vw) scale(1.08);} }
+
+  main, nav, footer{ position:relative; z-index:1; }
+  .section{ position:relative; }
+
+  /* ---------- glass utility (light) ---------- */
+  .glass{
+    background:var(--glass-bg);
+    backdrop-filter:blur(20px) saturate(160%);
+    -webkit-backdrop-filter:blur(20px) saturate(160%);
+    border:1px solid var(--glass-border);
+    box-shadow:var(--glass-shadow);
+  }
+  .glass-strong{
+    background:var(--glass-bg-strong);
+    backdrop-filter:blur(26px) saturate(170%);
+    -webkit-backdrop-filter:blur(26px) saturate(170%);
+    border:1px solid var(--glass-border);
+    box-shadow:var(--glass-shadow);
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 5vw; margin:0;
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(18px) saturate(160%);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);
+    border-bottom:1px solid rgba(255,255,255,0.7);
+  }
+  .brand{ display:flex; flex-direction:column; line-height:1; }
+  .brand .b1{ font-family:'Fraunces', serif; font-weight:700; font-size:1.15rem; letter-spacing:-0.02em; color:var(--ink);}
+  .brand .b2{ font-family:'JetBrains Mono', monospace; font-size:0.6rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--blue); margin-top:3px;}
+  .navlinks{ display:flex; gap:28px; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.08em;}
+  .navlinks a{ text-decoration:none; opacity:0.65; transition:opacity .25s, color .25s; color:var(--ink);}
+  .navlinks a:hover{ opacity:1; color:var(--blue); }
+  @media (max-width:720px){ .navlinks{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:min(14vw,130px) 6vw 70px;
+    overflow:hidden;
+  }
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:12px;
+    font-family:'Space Grotesk',sans-serif; font-size:clamp(0.95rem,2.2vw,1.35rem); font-weight:800; letter-spacing:0.08em; text-transform:uppercase;
+    margin-bottom:26px;
+    opacity:0; transform:translateY(14px); animation:fadeUp .9s ease .1s forwards;
+  }
+  .hero-eyebrow::before{ content:""; width:26px; height:2px; background:linear-gradient(90deg,var(--blue),var(--green)); display:inline-block; flex-shrink:0;}
+  .eyebrow-text{ display:inline-flex; }
+  .eyebrow-text .lt{
+    display:inline-block;
+    background:linear-gradient(100deg, var(--blue), var(--green) 55%, var(--blue));
+    background-size:250% 100%;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    opacity:0;
+    transform:translateY(10px) scale(0.85);
+    animation:letterPop 0.6s cubic-bezier(.2,.8,.3,1.3) forwards, shine 4.5s ease-in-out infinite 1.6s;
+    text-shadow:0 0 18px rgba(46,155,230,0.35);
+  }
+  .eyebrow-text .lt.space{ width:0.4em; }
+  @keyframes letterPop{
+    0%{ opacity:0; transform:translateY(10px) scale(0.85); filter:blur(3px); }
+    60%{ filter:blur(0); }
+    100%{ opacity:1; transform:translateY(0) scale(1); }
+  }
+  .hero h1{
+    font-size:clamp(2.5rem, 7vw, 5.4rem);
+    line-height:0.98;
+    max-width:16ch;
+    color:var(--ink);
+    opacity:0; transform:translateY(24px); animation:fadeUp 1s ease .25s forwards;
+  }
+  .hero h1 em{ font-style:italic; font-weight:500;
+    background:linear-gradient(100deg, var(--blue), var(--green) 70%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    background-size:200% 100%;
+    animation:shine 6s ease-in-out infinite;
+  }
+  @keyframes shine{ 0%,100%{ background-position:0% 50%;} 50%{ background-position:100% 50%;} }
+  @keyframes fadeUp{ to{ opacity:1; transform:translateY(0);} }
+  .hero-sub{
+    max-width:48ch; margin-top:26px; font-size:1.05rem; line-height:1.65; color:var(--ink-soft);
+    opacity:0; transform:translateY(20px); animation:fadeUp 1s ease .4s forwards;
+  }
+  .hero-stats{
+    display:flex; flex-wrap:wrap; gap:16px; margin-top:52px;
+    opacity:0; transform:translateY(20px); animation:fadeUp 1s ease .55s forwards;
+  }
+  .stat{
+    flex:1 1 150px; padding:20px 22px; border-radius:16px;
+    transition:transform .35s ease;
+  }
+  .stat:hover{ transform:translateY(-4px); }
+  .stat .num{ font-family:'Fraunces',serif; font-size:2.3rem; font-weight:600; color:var(--ink); display:flex; align-items:baseline; gap:4px;}
+  .stat .num small{ font-family:'JetBrains Mono',monospace; font-size:0.95rem; color:var(--blue); }
+  .stat .lbl{ font-family:'JetBrains Mono',monospace; font-size:0.64rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); margin-top:6px;}
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-pad{ padding:100px 6vw; }
+  .section-pad.tight{ padding-top:50px; }
+  .sec-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:52px; flex-wrap:wrap;}
+  .sec-tag{ font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--green); margin-bottom:14px; display:block;}
+  .sec-head h2{ font-size:clamp(1.8rem,4vw,2.9rem); max-width:16ch; color:var(--ink); }
+  .sec-head p{ max-width:34ch; font-size:0.95rem; color:var(--ink-soft); line-height:1.55; }
+
+  /* ---------- ROUTE ---------- */
+  .route-total{ font-family:'JetBrains Mono',monospace; text-align:right; }
+  .route-total .n{ font-family:'Fraunces',serif; font-size:2.2rem; color:var(--blue); font-weight:600;}
+  .route-total .u{ font-size:0.64rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft);}
+
+  .route-panel{ border-radius:22px; padding:34px 30px 26px; }
+  .route-svg-holder{ width:100%; overflow-x:auto; overflow-y:visible; padding-bottom:10px; }
+  .route-svg-holder svg{ display:block; min-width:1050px; width:100%; height:auto; }
+  .route-legend{ display:flex; gap:26px; flex-wrap:wrap; margin-top:14px; font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--ink-soft);}
+  .route-legend span{ display:inline-flex; align-items:center; gap:8px; }
+  .dot{ width:9px; height:9px; border-radius:50%; display:inline-block; box-shadow:0 0 8px currentColor;}
+
+  /* ---------- ITINERARY: image full-bleed, panels now crisp (no blur) ---------- */
+  .timeline{ position:relative; }
+  .timeline::before{
+    content:""; position:absolute; left:34px; top:8px; bottom:8px; width:1px;
+    background:repeating-linear-gradient(to bottom, rgba(18,42,51,0.22) 0 6px, transparent 6px 14px);
+  }
+  @media (max-width:720px){ .timeline::before{ left:18px; } }
+
+  .day{
+    position:relative;
+    display:grid;
+    grid-template-columns:70px 1fr;
+    gap:0 26px;
+    margin-bottom:28px;
+    opacity:0; transform:translateY(30px) scale(0.985);
+    transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+  }
+  .day.in-view{ opacity:1; transform:translateY(0) scale(1); }
+  @media (max-width:720px){ .day{ grid-template-columns:38px 1fr; } }
+
+  .day-marker{ display:flex; flex-direction:column; align-items:center; padding-top:22px;}
+  .day-marker .knob{
+    width:15px; height:15px; border-radius:50%;
+    background:var(--blue); border:3px solid #fff;
+    box-shadow:0 0 0 6px rgba(46,155,230,0.16), 0 0 14px rgba(46,155,230,0.55);
+    z-index:2;
+  }
+  .day.is-return .day-marker .knob{ background:var(--green); box-shadow:0 0 0 6px rgba(34,181,124,0.16), 0 0 14px rgba(34,181,124,0.55); }
+
+  .ticket{
+    position:relative;
+    border-radius:20px; overflow:hidden;
+    transition:transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease;
+    isolation:isolate;
+  }
+  .ticket:hover{ transform:translateY(-3px); }
+  .ticket-bg{
+    position:absolute; inset:0; z-index:0;
+    background-size:cover; background-position:center;
+    transition:transform .6s ease;
+  }
+  .ticket:hover .ticket-bg{ transform:scale(1.04); }
+  .ticket-bg.empty{ background-image:var(--fallback-grad); }
+  .ticket-scrim{ display:none; }
+  .ticket-head{
+    position:relative; z-index:1;
+    display:flex; align-items:center; gap:18px; padding:20px 22px;
+    cursor:pointer; user-select:none;
+  }
+  .ticket-head .daynum{
+    font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.13em;
+    background:var(--blue); color:#fff; padding:6px 12px; border-radius:999px; flex-shrink:0; font-weight:700;
+    box-shadow:0 2px 10px rgba(0,0,0,0.35);
+  }
+  .day.is-return .ticket-head .daynum{ background:var(--green); }
+  .ticket-head .place{ font-family:'Fraunces',serif; font-weight:700; font-size:1.32rem; flex:1; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.85), 0 2px 14px rgba(0,0,0,0.55);}
+  .ticket-head .chev{ transition:transform .35s ease; opacity:0.9; flex-shrink:0; color:#fff; filter:drop-shadow(0 1px 4px rgba(0,0,0,0.7));}
+  .day.open .ticket-head .chev{ transform:rotate(180deg); }
+
+  .ticket-body{ position:relative; z-index:1; max-height:0; overflow:hidden; transition:max-height .55s cubic-bezier(.2,.7,.2,1); }
+  .day.open .ticket-body{ max-height:1500px; }
+  .ticket-inner{
+    padding:0px 24px 22px;
+  }
+  .ticket-cap{
+    display:inline-block; margin-bottom:14px;
+    font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase;
+    font-weight:700; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.85);
+  }
+  .placeholder-txt{
+    font-family:'JetBrains Mono',monospace; font-size:0.64rem; letter-spacing:0.05em; font-weight:700; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.85);
+    margin-bottom:14px; display:inline-block; padding:8px 12px; border:1px dashed rgba(255,255,255,0.6); border-radius:8px;
+  }
+  .ticket-activities{ padding-top:0; }
+  .ticket-activities ul{ margin:0; padding:0; list-style:none; }
+  .ticket-activities li{
+    display:flex; gap:12px; padding:8px 0; font-size:0.92rem; font-weight:700; line-height:1.5;
+    border-bottom:1px solid rgba(255,255,255,0.25); color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.85), 0 2px 10px rgba(0,0,0,0.5);
+  }
+  .ticket-activities li:last-child{ border-bottom:none; }
+  .ticket-activities .t{ font-family:'JetBrains Mono',monospace; font-size:0.72rem; font-weight:700; color:#8FD4F3; flex-shrink:0; width:74px; padding-top:1px; text-shadow:0 1px 4px rgba(0,0,0,0.9);}
+  .ticket-note{
+    margin:14px 0 4px; padding:10px 14px; border-radius:10px;
+    font-family:'JetBrains Mono',monospace; font-size:0.72rem; font-weight:700; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.85);
+    background:rgba(0,0,0,0.35); border-left:3px solid var(--amber);
+  }
+
+  /* ---------- MENU TABS ---------- */
+  .tabs{ display:flex; gap:10px; margin-bottom:34px; flex-wrap:wrap; }
+  .tab-btn{
+    font-family:'JetBrains Mono',monospace; font-size:0.74rem; letter-spacing:0.08em; text-transform:uppercase;
+    padding:10px 18px; border-radius:999px; border:1px solid var(--glass-border);
+    background:var(--glass-bg); cursor:pointer; color:var(--ink-soft); transition:all .3s ease;
+  }
+  .tab-btn:hover{ border-color:var(--blue); color:var(--ink); }
+  .tab-btn.active{ background:linear-gradient(120deg, var(--blue), var(--green)); color:#fff; border-color:transparent; font-weight:700;}
+  .menu-panel{ display:none; }
+  .menu-panel.active{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-radius:18px; overflow:hidden; animation:fadeUp .5s ease forwards; }
+  @media (max-width:780px){ .menu-panel.active{ grid-template-columns:1fr; } }
+  .meal-col{ padding:26px 24px; border-right:1px solid rgba(18,42,51,0.1); }
+  .meal-col:last-child{ border-right:none; }
+  @media (max-width:780px){ .meal-col{ border-right:none; border-bottom:1px solid rgba(18,42,51,0.1); } }
+  .meal-col h4{ font-family:'JetBrains Mono',monospace; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--green); margin-bottom:14px; }
+  .meal-col p{ margin:0; font-size:0.9rem; line-height:1.65; color:var(--ink); }
+
+  /* ---------- STAY: full-bleed image, crisp shelf (no blur) ---------- */
+  .stay-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  @media (max-width:900px){ .stay-grid{ grid-template-columns:1fr; } }
+  .stay-card{
+    position:relative; border-radius:20px; overflow:hidden; height:340px;
+    display:block; text-decoration:none;
+    opacity:0; transform:translateY(28px);
+    transition:opacity .7s ease, transform .7s ease, box-shadow .4s ease;
+    isolation:isolate;
+  }
+  .stay-card.in-view{ opacity:1; transform:translateY(0); }
+  .stay-card:hover{ transform:translateY(-6px); }
+  .stay-bg{ position:absolute; inset:0; z-index:0; background-size:cover; background-position:center; transition:transform .6s ease; }
+  .stay-card:hover .stay-bg{ transform:scale(1.06); }
+  .stay-bg.empty{ background-image:var(--fallback-grad); }
+  .stay-scrim{ position:absolute; inset:0; z-index:0; background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.05) 55%, rgba(0,0,0,0.55) 100%); }
+  .stay-info{
+    position:absolute; left:0; right:0; bottom:0; z-index:1; padding:20px 22px;
+  }
+  .stay-info .loc{ font-family:'JetBrains Mono',monospace; font-size:0.64rem; font-weight:700; letter-spacing:0.11em; text-transform:uppercase; color:#8FE0B9; text-shadow:0 1px 4px rgba(0,0,0,0.85);}
+  .stay-info h3{ font-family:'Fraunces',serif; font-weight:700; font-size:1.26rem; margin-top:6px; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.85), 0 2px 14px rgba(0,0,0,0.55);}
+  .stay-info .nights{ font-size:0.82rem; font-weight:700; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.85); margin-top:4px;}
+  .stay-link{
+    display:inline-flex; align-items:center; gap:8px; margin-top:14px;
+    font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.05em; text-transform:uppercase;
+    color:#fff; background:linear-gradient(120deg, var(--blue), var(--green));
+    padding:9px 14px; border-radius:999px; text-decoration:none; font-weight:700;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .stay-link:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(34,181,124,0.35); }
+  .stay-link svg{ width:13px; height:13px; }
+  .stay-placeholder-txt{
+    position:absolute; z-index:1; top:16px; left:16px;
+    font-family:'JetBrains Mono',monospace; font-size:0.62rem; color:var(--ink-soft);
+    padding:8px 12px; border:1px dashed rgba(18,42,51,0.3); border-radius:8px; background:rgba(255,255,255,0.55);
+  }
+
+  /* ---------- INCLUDE/EXCLUDE ---------- */
+  .ie-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  @media (max-width:720px){ .ie-grid{ grid-template-columns:1fr; } }
+  .ie-card{ border-radius:18px; padding:30px 28px; }
+  .ie-card h3{ font-family:'JetBrains Mono',monospace; font-size:0.76rem; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:18px; padding-bottom:12px; border-bottom:1px solid rgba(18,42,51,0.14); color:var(--ink);}
+  .ie-card ul{ list-style:none; margin:0; padding:0; }
+  .ie-card li{ display:flex; gap:12px; padding:9px 0; font-size:0.92rem; border-bottom:1px solid rgba(18,42,51,0.07); color:var(--ink); }
+  .ie-card.inc li::before{ content:"✓"; color:var(--green); font-weight:700; }
+  .ie-card.exc li::before{ content:"✕"; color:#E0603E; font-weight:700; }
+
+  /* ---------- NOTES ---------- */
+  .notes{ border-radius:18px; padding:30px 32px; }
+  .notes ul{ margin:0; padding-left:18px; }
+  .notes li{ font-size:0.88rem; color:var(--ink-soft); line-height:1.7; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding:60px 6vw 30px; }
+  .foot-top{ display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap; padding-bottom:36px; border-bottom:1px solid rgba(18,42,51,0.12); }
+  .foot-top h2{ font-size:1.75rem; max-width:16ch; }
+  .foot-cta{ font-family:'JetBrains Mono',monospace; font-size:0.85rem; color:var(--green); }
+  .foot-bottom{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-top:22px; font-family:'JetBrains Mono',monospace; font-size:0.72rem; letter-spacing:0.04em; color:var(--ink-soft); }
+
+  .reveal{ opacity:0; transform:translateY(20px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="blob blue1"></div>
+<div class="blob blue2"></div>
+<div class="blob mint1"></div>
+<div class="blob mint2"></div>
+
+<nav>
+  <div class="brand">
+    <span class="b1">Trail Log</span>
+    <span class="b2">College IV · Karnataka Circuit</span>
+  </div>
+  <div class="navlinks">
+    <a href="#route">Route</a>
+    <a href="#itinerary">Itinerary</a>
+    <a href="#menu">Menu</a>
+    <a href="#stay">Stay</a>
+    <a href="#info">Info</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <span class="hero-eyebrow"><span class="eyebrow-text" id="eyebrowText">CSE-C Batch (2023-27) Presents:</span></span>
+  <h1>Five days off the<br>syllabus, on the<br><em>Western Ghats.</em></h1>
+  <p class="hero-sub" >Bengaluru → Chikmagalur → Hampi → Gokarna — </p>
+
+  <div class="hero-stats">
+    <div class="stat glass"><div class="num" data-count="2055"><span>0</span><small>km</small></div><div class="lbl">Ground &amp; rail covered</div></div>
+    <div class="stat glass"><div class="num" data-count="5"><span>0</span></div><div class="lbl">IV days, excluding pickup &amp; return</div></div>
+    <div class="stat glass"><div class="num" data-count="4"><span>0</span></div><div class="lbl">Destinations</div></div>
+    <div class="stat glass"><div class="num" data-count="3"><span>0</span></div><div class="lbl">Stays booked</div></div>
+  </div>
+</header>
+
+<!-- ================= ROUTE ================= -->
+<section class="section-pad" id="route">
+  <div class="sec-head">
+    <div>
+      <span class="sec-tag">The Ledger</span>
+      <h2>Every leg, plotted to distance.</h2>
+      <p>Station spacing below is proportional to actual road/rail kilometres, not just a straight line of icons.</p>
+    </div>
+    <div class="route-total">
+      <div class="n"><span data-count="2055">0</span></div>
+      <div class="u">Total km, college to college</div>
+    </div>
+  </div>
+
+  <div class="route-panel glass">
+    <div class="route-svg-holder">
+      <svg id="routeSvg" viewBox="0 0 1750 260" preserveAspectRatio="xMinYMid meet"></svg>
+    </div>
+    <div class="route-legend">
+      <span><i class="dot" style="background:#2E9BE6;color:#2E9BE6"></i> KSRTC — Ullasayathra</span>
+      <span><i class="dot" style="background:#F2994A;color:#F2994A"></i> Train</span>
+      <span><i class="dot" style="background:#22B57C;color:#22B57C"></i> Tourist bus (49/40/33 seater)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ITINERARY ================= -->
+<section class="section-pad" id="itinerary">
+  <div class="sec-head">
+    <div>
+      <span class="sec-tag">Day By Day</span>
+      <h2>Day 0 through Return.</h2>
+      <p>Pickup is Day 0 and the drop is Return — neither is counted among the 5 numbered IV days on the ground.</p>
+    </div>
+  </div>
+  <div class="timeline" id="timeline"></div>
+</section>
+
+<!-- ================= MENU ================= -->
+<section class="section-pad" id="menu">
+  <div class="sec-head">
+    <div>
+      <span class="sec-tag">On The Table</span>
+      <h2>Meals by destination.</h2>
+      <p>Buffet breakfast, lunch and dinner throughout — the menu shifts a little at each stop.</p>
+    </div>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div id="menuPanels"></div>
+</section>
+
+<!-- ================= STAY ================= -->
+<section class="section-pad" id="stay">
+  <div class="sec-head">
+    <div>
+      <span class="sec-tag">Where We Sleep</span>
+      <h2>Three stops, three stays.</h2>
+      <p>Deluxe rooms, shared basis. Tap a card to open it on Google and browse real photos.</p>
+    </div>
+  </div>
+  <div class="stay-grid" id="stayGrid"></div>
+</section>
+
+<!-- ================= INCLUDE / EXCLUDE ================= -->
+<section class="section-pad" id="info">
+  <div class="sec-head">
+    <div>
+      <span class="sec-tag">The Fine Print</span>
+      <h2>What's covered, what isn't.</h2>
+    </div>
+  </div>
+  <div class="ie-grid">
+    <div class="ie-card inc glass">
+      <h3>Inclusions</h3>
+      <ul>
+        <li>Whole journey in 49 / 40 / 33 seater bus</li>
+        <li>Buffet food — breakfast, lunch, dinner</li>
+        <li>Accommodation in deluxe rooms, shared basis</li>
+        <li>Well-experienced travel guide</li>
+        <li>All entry tickets</li>
+        <li>Mineral water on board</li>
+        <li>Campfire with music</li>
+        <li>Momentos for memories</li>
+      </ul>
+    </div>
+    <div class="ie-card exc glass">
+      <h3>Exclusions</h3>
+      <ul>
+        <li>Any other personal expenses</li>
+        <li>Extra meals ordered</li>
+        <li>Laundry</li>
+        <li>Boating / cycling</li>
+        <li>5% GST</li>
+        <li>Extra activities not mentioned above</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NOTES ================= -->
+<section class="section-pad tight" style="padding-top:0;">
+  <div class="notes glass reveal">
+    <ul>
+      <li>Please be punctual for every stop, as per the times fixed in this itinerary.</li>
+      <li>The organisers are not responsible for delays or missed transfers.</li>
+      <li>No refund will be given for unutilised services.</li>
+      <li>Cost does not cover anything not explicitly listed above.</li>
+      <li>The itinerary may shift because of weather, traffic, or local conditions.</li>
+      <li>Pickup from college to Ernakulam, and the final EKM-to-college leg, both run on KSRTC Ullasayathra.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="foot-top">
+    <h2>Trail Log — College IV</h2>
+    <div class="foot-cta">Coordinators on call · 
+        For any queries, reach out to the trip coordinators via WhatsApp or call.
+         Riya Benny - +91 8848256221 , Adhil Bin Nadeer - +91 7907547056</div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    
+    <span>Built by the trip coordinators</span>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   ██  ADD YOUR OWN PHOTOS HERE
+   Paste a direct image URL between the quotes for any
+   destination or hotel. Leave "" empty to keep the soft
+   gradient placeholder until you add one.
+   ========================================================= */
+const destinationPhotos = {
+  pickup:      "ullasayathra.png",
+  bangalore:   "Banglr.png",
+  chikmagalur: "chickmglr.png",
+  hampi:       "Hampi.png",
+  gokarnaRoute:"gokarna.png",
+  gokarna:     "gokarna.png",
+  returnLeg:   "ullasayathra.png",
+};
+const hotelPhotos = {
+  chikmagalur: "RC.png",
+  hampi:       "kingshampi.png",
+  gokarna:     "Sans.png",
+};
+/* ========================================================= */
+
+/* ============ ROUTE DATA ============ */
+const legs = [
+  {from:"College", to:"EKM", km:65, mode:"ksrtc"},
+  {from:"EKM", to:"Bengaluru", km:590, mode:"train"},
+  {from:"Bengaluru", to:"Chikmagalur", km:245, mode:"bus"},
+  {from:"Chikmagalur", to:"Hampi", km:330, mode:"bus"},
+  {from:"Hampi", to:"Gokarna", km:275, mode:"bus"},
+  {from:"Gokarna", to:"Mangalore", km:235, mode:"bus"},
+  {from:"Mangalore", to:"EKM", km:250, mode:"train"},
+  {from:"EKM", to:"College", km:65, mode:"ksrtc"},
+];
+const modeColor = {ksrtc:"#2E9BE6", train:"#F2994A", bus:"#22B57C"};
+const modeGlyph = {ksrtc:"KSRTC", train:"TRAIN", bus:"BUS"};
+
+/* fallback gradients: blue -> green across the journey */
+const fallbackGrads = [
+  "linear-gradient(135deg,#DCF1FC,#B7E3FA)",
+  "linear-gradient(135deg,#D6EEFB,#B3E7E4)",
+  "linear-gradient(135deg,#D2EEEF,#B9EBD6)",
+  "linear-gradient(135deg,#D3F1E4,#BDEFD3)",
+  "linear-gradient(135deg,#D6F4E6,#BFF0D6)",
+  "linear-gradient(135deg,#D9F6E9,#C2EFD2)",
+  "linear-gradient(135deg,#DCF6E8,#C9F1DB)",
+];
+
+/* ============ DAY DATA (all times 12-hour, AM/PM) ============ */
+const days = [
+  {
+    tag:"Day 0", place:"Pickup — College to Bengaluru", isReturn:false, photoKey:"pickup",
+    cap:"Ullasayathra · KSRTC",
+    note:"Pickup from college to Ernakulam is always by Ullasayathra (KSRTC).",
+    items:[
+      ["—","Pickup from college, transfer to Ernakulam by Ullasayathra (KSRTC) bus"],
+      ["—","Onward departure to Bengaluru"],
+      ["4:00 PM","Board Cape SBC Express, Train No. 16525"],
+      ["Overnight","Overnight journey in train"],
+    ]
+  },
+  {
+    tag:"Day 1", place:"Bengaluru", isReturn:false, photoKey:"bangalore",
+    cap:"Bengaluru", note:"",
+    items:[
+      ["8:30 AM","Freshen up and breakfast"],
+      ["11:00 AM","Industrial visit"],
+      ["1:30 PM","Lunch"],
+      ["—","Industrial visit, continued"],
+      ["4:30 PM","Proceed to Chikmagalur"],
+      ["9:00 PM","Dinner"],
+      ["10:30 PM","Stay at hotel"],
+    ]
+  },
+  {
+    tag:"Day 2", place:"Chikmagalur", isReturn:false, photoKey:"chikmagalur",
+    cap:"Mullayanagiri Hills", note:"",
+    items:[
+      ["7:00 AM","Breakfast"],
+      ["8:00 AM","Depart for adventure jeep trekking and sightseeing"],
+      ["—","Baba Budangiri Hills"],
+      ["—","Mullayanagiri Hills — highest peak in Karnataka"],
+      ["—","Hanumana / Hanamala Waterfalls"],
+      ["—","Z Point — short trek to a stunning viewpoint"],
+      ["2:00 PM","Lunch"],
+      ["—","Travel onward to Hampi"],
+      ["9:00 PM","Reach Hampi"],
+      ["9:30 PM","Dinner, overnight stay at Hampi"],
+    ]
+  },
+  {
+    tag:"Day 3", place:"Hampi", isReturn:false, photoKey:"hampi",
+    cap:"Hampi Ruins", note:"",
+    items:[
+      ["8:00 AM","Breakfast"],
+      ["—","Vittala Temple"],
+      ["—","Queen's Bath"],
+      ["—","Hemakutha Temple"],
+      ["—","Virupaksha Temple"],
+      ["2:00 PM","Lunch"],
+      ["—","Mahanavami Dibba"],
+      ["—","Lotus Mahal"],
+      ["—","Sunset at Matanga Hills"],
+      ["—","Dinner, stay at hotel"],
+    ]
+  },
+  {
+    tag:"Day 4", place:"Hampi to Gokarna", isReturn:false, photoKey:"gokarnaRoute",
+    cap:"Kudle Beach", note:"",
+    items:[
+      ["7:00 AM","Breakfast"],
+      ["7:30 AM","Proceed to Gokarna"],
+      ["3:30 PM","Shiva Caves"],
+      ["4:30 PM","Kudle Beach"],
+      ["6:30 PM","Sunset at hill top"],
+      ["9:00 PM","Dinner"],
+      ["9:30 PM","Stay at hotel"],
+    ]
+  },
+  {
+    tag:"Day 5", place:"Gokarna", isReturn:false, photoKey:"gokarna",
+    cap:"Gokarna Coast", note:"",
+    items:[
+      ["—","Freshen up and breakfast"],
+      ["8:00 AM","Mirjan Fort"],
+      ["2:00 PM","Lunch, on the way"],
+      ["5:30 PM","Drop at railway station"],
+      ["8:00 PM","Dinner"],
+    ]
+  },
+  {
+    tag:"Return", place:"Gokarna to College", isReturn:true, photoKey:"returnLeg",
+    cap:"Mangalore · Kottayam · KSRTC",
+    note:"Gokarna to Mangalore by bus, Mangalore to Kottayam by train, and Kottayam to college by Ullasayathra (KSRTC).",
+    items:[
+      ["—","Gokarna to Mangalore by bus"],
+      ["—","Mangalore to Kottayam by train"],
+      ["—","Kottayam to college by Ullasayathra (KSRTC) bus"],
+      ["—","Reach college / hometown by Morning"],
+    ]
+  },
+];
+
+const menus = [
+  {name:"Bengaluru", breakfast:"Idly, vada, puri bhaji, masala dosa, tea &amp; coffee", lunch:"Chicken biriyani / Alfam mandhi / Hyderabadi chicken biriyani", dinner:"Chicken curry, chicken kabab, ghee rice / fried rice, chapathi, salad"},
+  {name:"Chikmagalur", breakfast:"Idly, dosa, poori, bhaji, chutney, sambar, vada, bread jam, cut fruit", lunch:"Ghee rice, chapathi, parotta, veg curry, chicken curry, chicken kabab, papad, salad, ice cream", dinner:"Fried rice, roti, butter naan, tandoor chicken, chicken curry, veg curry, salads, soft drinks"},
+  {name:"Hampi", breakfast:"Idly, vada, puri bhaji, tea &amp; coffee, bread jam, cut fruit", lunch:"Veg biriyani / Hyderabadi chicken biriyani", dinner:"Chicken curry, chicken kabab, ghee rice / fried rice, chapathi, salad"},
+  {name:"Gokarna", breakfast:"Upma or poha, noodles or pasta, idli or puri bhaji, bread butter jam, tea &amp; coffee", lunch:"Chapathi, white rice, chicken curry or biriyani, veg sabzi, dal curry with pickle &amp; papad, sweet", dinner:"Plain rice, chapathi or parotta, chicken chilli or gravy, veg sabzi, dal curry with pickle &amp; papad, sweet"},
+];
+
+const stays = [
+  {loc:"Chikmagalur · 1 night", name:"RC Comfort", key:"chikmagalur", query:"RC Comfort Chikmagalur"},
+  {loc:"Hampi · 2 nights", name:"PBS Grand / Kings Court", key:"hampi", query:"PBS Grand Hampi"},
+  {loc:"Gokarna · 1 night", name:"Sanskruti Resorts", key:"gokarna", query:"Sanskruti Resort Gokarna"},
+];
+
+/* ============ ROUTE SVG (distance-proportional, animated draw + moving marker) ============ */
+(function buildRoute(){
+  const svg = document.getElementById('routeSvg');
+  const W = 1750, H = 260, padL = 60, padR = 60;
+  const usable = W - padL - padR;
+  const total = legs.reduce((s,l)=>s+l.km,0);
+
+  let cum = 0;
+  const points = [{x:padL, y:H/2, label:legs[0].from}];
+  legs.forEach((l,i)=>{
+    cum += l.km;
+    const x = padL + (cum/total)*usable;
+    const y = H/2 + (i%2===0 ? -46 : 46) * (i===legs.length-1?0:1);
+    points.push({x, y, label:l.to});
+  });
+  points[points.length-1].y = H/2;
+
+  const ns = "http://www.w3.org/2000/svg";
+  function el(tag, attrs){
+    const e = document.createElementNS(ns, tag);
+    for(const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  let d = `M ${points[0].x} ${points[0].y}`;
+  for(let i=1;i<points.length;i++){
+    const p0 = points[i-1], p1 = points[i];
+    const mx = (p0.x+p1.x)/2;
+    d += ` Q ${mx} ${p0.y}, ${mx} ${(p0.y+p1.y)/2} T ${p1.x} ${p1.y}`;
+  }
+
+  const defs = el('defs', {});
+  const filter = el('filter', {id:'glow', x:'-50%', y:'-50%', width:'200%', height:'200%'});
+  filter.appendChild(el('feGaussianBlur', {stdDeviation:'3', result:'blur'}));
+  const merge = el('feMerge', {});
+  merge.appendChild(el('feMergeNode', {in:'blur'}));
+  merge.appendChild(el('feMergeNode', {in:'SourceGraphic'}));
+  filter.appendChild(merge);
+  defs.appendChild(filter);
+  svg.appendChild(defs);
+
+  const basePath = el('path', {d, fill:'none', stroke:'rgba(18,42,51,0.14)', 'stroke-width':2});
+  svg.appendChild(basePath);
+
+  for(let i=0;i<legs.length;i++){
+    const p0 = points[i], p1 = points[i+1];
+    const len = Math.hypot(p1.x-p0.x, p1.y-p0.y);
+    const seg = el('line', {
+      x1:p0.x, y1:p0.y, x2:p1.x, y2:p1.y,
+      stroke: modeColor[legs[i].mode], 'stroke-width':2.5,
+      'stroke-dasharray': len, 'stroke-dashoffset': len,
+      filter:'url(#glow)'
+    });
+    seg.classList.add('leg-line');
+    seg.style.transition = `stroke-dashoffset 1s cubic-bezier(.2,.7,.2,1) ${i*0.15}s`;
+    svg.appendChild(seg);
+
+    const mx = (p0.x+p1.x)/2, my = (p0.y+p1.y)/2;
+    const offY = (i%2===0)? -14 : 18;
+    const t = el('text', {x:mx, y:my+offY, 'text-anchor':'middle', fill:'#122A33', 'font-family':'JetBrains Mono, monospace', 'font-size':'11'});
+    t.textContent = `${legs[i].km} km`;
+    svg.appendChild(t);
+    const t2 = el('text', {x:mx, y:my+offY+14, 'text-anchor':'middle', fill:modeColor[legs[i].mode], 'font-family':'JetBrains Mono, monospace', 'font-size':'9', 'letter-spacing':'1'});
+    t2.textContent = modeGlyph[legs[i].mode];
+    svg.appendChild(t2);
+  }
+
+  points.forEach((p,i)=>{
+    const halo = el('circle', {cx:p.x, cy:p.y, r:10, fill:'rgba(46,155,230,0.14)'});
+    svg.appendChild(halo);
+    const c = el('circle', {cx:p.x, cy:p.y, r:5.5, fill:'#FFFFFF', stroke:'#122A33', 'stroke-width':2});
+    svg.appendChild(c);
+    const lbl = el('text', {x:p.x, y: p.y > H/2 ? p.y+24 : p.y-16, 'text-anchor': i===0?'start': (i===points.length-1?'end':'middle'), fill:'#122A33', 'font-family':'Space Grotesk, sans-serif', 'font-size':'13', 'font-weight':'600'});
+    lbl.textContent = p.label;
+    svg.appendChild(lbl);
+  });
+
+  const marker = el('circle', {r:6.5, fill:'#22B57C', stroke:'#fff', 'stroke-width':2, filter:'url(#glow)'});
+  marker.style.offsetPath = `path('${d}')`;
+  marker.style.webkitOffsetPath = `path('${d}')`;
+  svg.appendChild(marker);
+
+  const style = document.createElement('style');
+  style.textContent = `
+    #routeSvg circle[fill="#22B57C"]{ animation: travel 14s linear infinite; }
+    @keyframes travel { from{ offset-distance:0%; } to{ offset-distance:100%; } }
+  `;
+  document.head.appendChild(style);
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        document.querySelectorAll('.leg-line').forEach(l=> l.style.strokeDashoffset = 0);
+        io.disconnect();
+      }
+    });
+  }, {threshold:0.25});
+  io.observe(document.getElementById('route'));
+})();
+
+/* ============ ITINERARY CARDS (full-bleed image behind glass) ============ */
+(function buildDays(){
+  const wrap = document.getElementById('timeline');
+  days.forEach((d, i)=>{
+    const photo = destinationPhotos[d.photoKey] || "";
+    const grad = fallbackGrads[i % fallbackGrads.length];
+    const el = document.createElement('div');
+    el.className = 'day' + (d.isReturn ? ' is-return' : '') + (i===0?' open':'');
+    el.style.transitionDelay = (i*0.05)+'s';
+    el.innerHTML = `
+      <div class="day-marker"><div class="knob"></div></div>
+      <div class="ticket" style="--fallback-grad:${grad}">
+        <div class="ticket-bg${photo?'':' empty'}" ${photo?`style="background-image:url('${photo}')"`:''}></div>
+        <div class="ticket-scrim"></div>
+        <div class="ticket-head" data-toggle>
+          <span class="daynum mono">${d.tag}</span>
+          <span class="place">${d.place}</span>
+          <span class="chev">▾</span>
+        </div>
+        <div class="ticket-body">
+          <div class="ticket-inner">
+            <span class="ticket-cap">${d.cap}</span>
+            ${photo ? '' : `<br><span class="placeholder-txt">＋ Add a photo via destinationPhotos.${d.photoKey}</span>`}
+            <div class="ticket-activities">
+              <ul>
+                ${d.items.map(it=>`<li><span class="t mono">${it[0]}</span><span>${it[1]}</span></li>`).join('')}
+              </ul>
+            </div>
+            ${d.note ? `<div class="ticket-note">${d.note}</div>` : ''}
+          </div>
+        </div>
+      </div>
+    `;
+    wrap.appendChild(el);
+    el.querySelector('[data-toggle]').addEventListener('click', ()=>{
+      el.classList.toggle('open');
+    });
+  });
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view'); });
+  }, {threshold:0.15});
+  document.querySelectorAll('.day').forEach(d=>io.observe(d));
+})();
+
+/* ============ MENU TABS ============ */
+(function buildMenu(){
+  const tabs = document.getElementById('tabs');
+  const panels = document.getElementById('menuPanels');
+  menus.forEach((m,i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (i===0?' active':'');
+    btn.textContent = m.name;
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.menu-panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-'+i).classList.add('active');
+    });
+    tabs.appendChild(btn);
+
+    const panel = document.createElement('div');
+    panel.className = 'menu-panel glass' + (i===0?' active':'');
+    panel.id = 'panel-'+i;
+    panel.innerHTML = `
+      <div class="meal-col"><h4>Breakfast</h4><p>${m.breakfast}</p></div>
+      <div class="meal-col"><h4>Lunch</h4><p>${m.lunch}</p></div>
+      <div class="meal-col"><h4>Dinner</h4><p>${m.dinner}</p></div>
+    `;
+    panels.appendChild(panel);
+  });
+})();
+
+/* ============ STAY CARDS (full-bleed image + crisp shelf) ============ */
+(function buildStay(){
+  const grid = document.getElementById('stayGrid');
+  stays.forEach((s,i)=>{
+    const photo = hotelPhotos[s.key] || "";
+    const grad = fallbackGrads[(i+2) % fallbackGrads.length];
+    const mapsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(s.query);
+    const card = document.createElement('a');
+    card.href = mapsUrl;
+    card.target = "_blank";
+    card.rel = "noopener";
+    card.className = 'stay-card';
+    card.style.setProperty('--fallback-grad', grad);
+    card.innerHTML = `
+      <div class="stay-bg${photo?'':' empty'}" ${photo?`style="background-image:url('${photo}')"`:''}></div>
+      <div class="stay-scrim"></div>
+      ${photo ? '' : `<span class="stay-placeholder-txt">＋ Add a photo via hotelPhotos.${s.key}</span>`}
+      <div class="stay-info">
+        <div class="loc mono">${s.loc}</div>
+        <h3>${s.name}</h3>
+        <div class="nights">Deluxe room · shared basis</div>
+        <span class="stay-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          View on Google
+        </span>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view'); });
+  }, {threshold:0.15});
+  document.querySelectorAll('.stay-card').forEach(c=>io.observe(c));
+})();
+
+/* ============ HERO EYEBROW — letter-by-letter mass reveal ============ */
+(function animateEyebrow(){
+  const el = document.getElementById('eyebrowText');
+  if(!el) return;
+  const text = el.textContent;
+  el.textContent = '';
+  [...text].forEach((ch, i)=>{
+    const span = document.createElement('span');
+    span.className = 'lt' + (ch === ' ' ? ' space' : '');
+    span.textContent = ch === ' ' ? '\u00A0' : ch;
+    span.style.animationDelay = (0.15 + i*0.035) + 's, ' + (1.6 + i*0.035) + 's';
+    el.appendChild(span);
+  });
+})();
+
+
+(function counters(){
+  const nums = document.querySelectorAll('[data-count]');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const elx = e.target;
+        const target = parseInt(elx.getAttribute('data-count'),10);
+        const span = elx.tagName === 'SPAN' ? elx : elx.querySelector('span');
+        let cur = 0;
+        const step = Math.max(1, Math.round(target/60));
+        const t = setInterval(()=>{
+          cur += step;
+          if(cur >= target){ cur = target; clearInterval(t); }
+          span.textContent = cur.toLocaleString();
+        }, 16);
+        io.unobserve(elx);
+      }
+    });
+  }, {threshold:0.4});
+  nums.forEach(n=>io.observe(n));
+})();
+
+/* ============ generic reveal ============ */
+(function revealGeneric(){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view'); });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(elx=>io.observe(elx));
+})();
+
+/* ============ subtle parallax on blobs (mouse) ============ */
+(function parallax(){
+  const blobs = document.querySelectorAll('.blob');
+  window.addEventListener('mousemove', (e)=>{
+    const x = (e.clientX / window.innerWidth - 0.5);
+    const y = (e.clientY / window.innerHeight - 0.5);
+    blobs.forEach((b,i)=>{
+      const depth = (i+1) * 8;
+      b.style.transform = `translate(${x*depth}px, ${y*depth}px)`;
+    });
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>
